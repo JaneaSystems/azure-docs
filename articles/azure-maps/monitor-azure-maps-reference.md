@@ -1,21 +1,21 @@
 ---
-title: Monitoring [TODO-replace-with-service-name] data reference #Required; *your official service name*  
-description: Important reference material needed when you monitor [TODO-replace-with-service-name] 
-author: #Required; your GitHub user alias, with correct capitalization.
-ms.topic: reference
+title: Monitoring Azure Maps data reference #Required; *your official service name*  
+description: Important reference material needed when you monitor Azure Maps 
+author: john-janea #Required; your GitHub user alias, with correct capitalization.
+ms.topic: how-to
 ms.author: #Required; Microsoft alias of author; optional team alias.
-ms.service: #Required; service you are monitoring
+ms.service: azure-maps #Required; service you are monitoring
 ms.custom: subject-monitoring
-ms.date: #Required; mm/dd/yyyy format.
+ms.date: 04/27/2021 #Required; mm/dd/yyyy format.
 ---
 <!-- VERSION 2.3
-Template for monitoring data reference article for Azure services. This article is support for the main "Monitoring [servicename]" article for the service. -->
+Template for monitoring data reference article for Azure services. This article is support for the main "Monitoring Azure Maps" article for the service. -->
 
-<!-- IMPORTANT STEP 1.  Do a search and replace of [TODO-replace-with-service-name] with the name of your service. That will make the template easier to read -->
+<!-- IMPORTANT STEP 1.  Do a search and replace of Azure Maps with the name of your service. That will make the template easier to read -->
 
-# Monitoring [TODO-replace-with-service-name] data reference
+# Monitoring Azure Maps data reference
 
-See [Monitoring [TODO-replace-with-service-name]](monitor-service.md) for details on collecting and analyzing monitoring data for [TODO-replace-with-service-name].
+See [Monitoring Azure Maps](monitor-azure-maps.md) for details on collecting and analyzing monitoring data for Azure Maps.
 
 ## Metrics
 
@@ -24,49 +24,65 @@ See [Monitoring [TODO-replace-with-service-name]](monitor-service.md) for detail
 
 <!-- 2 options here depending on the level of extra content you have. -->
 
-------------**OPTION 1 EXAMPLE** ---------------------
+<!--------------**OPTION 1 EXAMPLE** ------------------- -->
 
 <!-- OPTION 1 - Minimum -  Link to relevant bookmarks in https://docs.microsoft.com/azure/azure-monitor/platform/metrics-supported, which is auto generated from underlying systems.  Not all metrics are published depending on whether your product group wants them to be.  If the metric is published, but descriptions are wrong of missing, contact your PM and tell them to update them  in the Azure Monitor "shoebox" manifest.  If this article is missing metrics that you and the PM know are available, both of you contact azmondocs@microsoft.com.  
 -->
 
 <!-- Example format. There should be AT LEAST one Resource Provider/Resource Type here. -->
 
-This section lists all the automatically collected platform metrics collected for [TODO-replace-with-service-name].  
+This section lists all the automatically collected platform metrics collected for Azure Maps.  
 
-|Metric Type | Resource Provider / Type Namespace<br/> and link to individual metrics |
+<!--|Metric Type | Resource Provider / Type Namespace<br/> and link to individual metrics |
 |-------|-----|
 | Virtual Machine | [Microsoft.Compute/virtualMachine](/azure/azure-monitor/platform/metrics-supported#microsoftcomputevirtualmachines) |
-| Virtual machine scale set | [Microsoft.Compute/virtualMachinescaleset](/azure/azure-monitor/platform/metrics-supported#microsoftcomputevirtualmachinescaleset) 
+| Virtual machine scale set | [Microsoft.Compute/virtualMachinescaleset](/azure/azure-monitor/platform/metrics-supported#microsoftcomputevirtualmachinescaleset) --> 
 
 
 
---------------**OPTION 2 EXAMPLE** -------------
+<!--------------**OPTION 2 EXAMPLE** ----------- -->
 
 <!--  OPTION 2 -  Link to the metrics as above, but work in extra information not found in the automated metric-supported reference article.  NOTE: YOU WILL NOW HAVE TO MANUALLY MAINTAIN THIS SECTION to make sure it stays in sync with the metrics-supported link. For highly customized example, see [CosmosDB](https://docs.microsoft.com/azure/cosmos-db/monitor-cosmos-db-reference#metrics). They even regroup the metrics into usage type vs. resource provider and type.
 -->
 
 <!-- Example format. Mimic the setup of metrics supported, but add extra information -->
 
-### Virtual Machine metrics
+### Availability Metrics
 
-Resource Provider and Type: [Microsoft.Compute/virtualMachines](/azure/azure-monitor/platform/metrics-supported#microsoftcomputevirtualmachines)
+<!-- Resource Provider and Type: [Microsoft.Compute/virtualMachines](/azure/azure-monitor/platform/metrics-supported#microsoftcomputevirtualmachines) -->
 
-| Metric | Unit | Description | *TODO replace this label with other information*  |
-|:-------|:-----|:------------|:------------------|
-|        |      |             | Use this metric for <!-- put your specific information in here -->  |
-|        |      |             |  |
-
-### Virtual machine scale set metrics
-
-Namespace- [Microsoft.Compute/virtualMachinesscaleset](/azure/azure-monitor/platform/metrics-supported#microsoftcomputevirtualmachinescalesets) 
-
-| Metric | Unit | Description | *TODO replace this label with other information*  |
-|:-------|:-----|:------------|:------------------|
-|        |      |             | Use this metric for <!-- put your specific information in here -->  |
-|        |      |             |  |
+|Metric (Metric Display Name)|Unit (Aggregation Type) |Description|Dimensions| Time granularities| Legacy metric mapping | Usage |
+|---|---|---|---| ---| ---| ---|
+| Availability (Availability) | Percent (Avg, Percentile) | Availability of the APIs| ApiName, ApiCategory| All | N/A | Used to monitor availability per API |
 
 
-<!-- Add additional explanation of reference information as needed here. Link to other articles such as your Monitor [servicename] article as appropriate. -->
+### Usage Metrics
+
+<!-- Namespace- [Microsoft.Compute/virtualMachinesscaleset](/azure/azure-monitor/platform/metrics-supported#microsoftcomputevirtualmachinescalesets) -->
+
+|Metric (Metric Display Name)|Unit (Aggregation Type) |Description|Dimensions| Time granularities| Legacy metric mapping | Usage |
+|---|---|---|---| ---| ---| ---|
+| Usage (Usage) | Count | Count of API calls | ApiName, ApiCategory, ResultType, ResponseCode| All | N/A | Used to monitor availability per API |
+
+### Storage Consumption Metrics
+
+|Metric (Metric Display Name)|Unit (Aggregation Type) |Description|Dimensions| Time granularities| Legacy metric mapping | Usage |
+|---|---|---|---| ---| ---| ---|
+| MBytesConsumed (MBytesConsumed) | MB (Total) | Storage consumption for Creator services | ResourceId, CreatorResourceName, CreatorServiceName| All | N/A | Used to monitor the storage consumption per Creator Service API |
+
+### Transaction metrics
+
+|Metric (Metric Display Name)|Unit (Aggregation Type) |Description|Dimensions| Time granularities| Legacy metric mapping | Usage |
+|---|---|---|---| ---| ---| ---|
+| Transactions (Transactions) | Count | Count of total transactions calls | ApiName, ApiCategory, ResultType, ResponseCode| All | N/A | Used to monitor the total number of requests per API |
+
+### Failure metrics
+
+|Metric (Metric Display Name)|Unit (Aggregation Type) |Description|Dimensions| Time granularities| Legacy metric mapping | Usage |
+|---|---|---|---| ---| ---| ---|
+| FailedRequests (Failed Requests) | Count | Count of failed API calls | ApiName, ApiCategory, ResponseCode| All | N/A | Used to monitor the failures per API |
+
+<!-- Add additional explanation of reference information as needed here. Link to other articles such as your Monitor Azure Maps article as appropriate. -->
 
 <!-- Keep this text as-is -->
 For more information, see a list of [all platform metrics supported in Azure Monitor](https://docs.microsoft.com/azure/azure-monitor/platform/metrics-supported).
@@ -78,18 +94,17 @@ For more information, see a list of [all platform metrics supported in Azure Mon
 <!-- REQUIRED. Please  keep headings in this order -->
 <!-- If you have metrics with dimensions, outline it here. If you have no dimensions, say so.  Questions email azmondocs@microsoft.com -->
 
+Azure Maps does not have any metrics that contain dimensions.
+
 For more information on what metric dimensions are, see [Multi-dimensional metrics](/azure/azure-monitor/platform/data-platform-metrics#multi-dimensional-metrics).
 
+<!--*OR*
 
-[TODO-replace-with-service-name] does not have any metrics that contain dimensions.
-
-*OR*
-
-[TODO-replace-with-service-name] has the following dimensions associated with its metrics.
+Azure Maps has the following dimensions associated with its metrics. -->
 
 <!-- See https://docs.microsoft.com/azure/storage/common/monitor-storage-reference#metrics-dimensions for an example. Part is copied below. -->
 
-**--------------EXAMPLE format when you have dimensions------------------**
+<!-- **--------------EXAMPLE format when you have dimensions------------------**
 
 Azure Storage supports following dimensions for metrics in Azure Monitor.
 
@@ -97,39 +112,73 @@ Azure Storage supports following dimensions for metrics in Azure Monitor.
 | ------------------- | ----------------- |
 | **BlobType** | The type of blob for Blob metrics only. The supported values are **BlockBlob**, **PageBlob**, and **Azure Data Lake Storage**. Append blobs are included in **BlockBlob**. |
 | **BlobTier** | Azure storage offers different access tiers, which allow you to store blob object data in the most cost-effective manner. See more in [Azure Storage blob tier](/azure/storage/blobs/storage-blob-storage-tiers). The supported values include: <br/> <li>**Hot**: Hot tier</li> <li>**Cool**: Cool tier</li> <li>**Archive**: Archive tier</li> <li>**Premium**: Premium tier for block blob</li> <li>**P4/P6/P10/P15/P20/P30/P40/P50/P60**: Tier types for premium page blob</li> <li>**Standard**: Tier type for standard page Blob</li> <li>**Untiered**: Tier type for general purpose v1 storage account</li> |
-| **GeoType** | Transaction from Primary or Secondary cluster. The available values include **Primary** and **Secondary**. It applies to Read Access Geo Redundant Storage(RA-GRS) when reading objects from secondary tenant. |
+| **GeoType** | Transaction from Primary or Secondary cluster. The available values include **Primary** and **Secondary**. It applies to Read Access Geo Redundant Storage(RA-GRS) when reading objects from secondary tenant. | -->
 
 ## Resource logs
 <!-- REQUIRED. Please  keep headings in this order -->
 
-This section lists the types of resource logs you can collect for [TODO-replace-with-service-name]. 
+This section lists the types of resource logs you can collect for Azure Maps. 
 
 <!-- List all the resource log types you can have and what they are for -->  
 
 For reference, see a list of [all resource logs category types supported in Azure Monitor](/azure/azure-monitor/platform/resource-logs-schema).
 
-------------**OPTION 1 EXAMPLE** ---------------------
+### Resource Logs Schema - Required (Part A)
+
+| Name | Required | Description |
+| --- | --- | --- |
+| **time** | Yes | The timestamp (UTC) of the event. |
+| **resourceId** | Yes | The resource ID of the resource that emitted the event. For tenant services, this is of the form /tenants/tenant-id/providers/provider-name.|
+| **category** | Yes | The log category of the event. Category is the granularity at which you can enable or disable logs on a particular resource. The properties that appear within the properties blob of an event are the same within a particular log category and resource type. Typical log categories are "Audit" "Operational" "Execution" and "Request."  |
+| **operationName** | Yes | The name of the operation represented by this event. If the event represents an Azure RBAC operation, this is the Azure RBAC operation name (for example, Microsoft.Storage/storageAccounts/blobServices/blobs/Read). Typically modeled in the form of a Resource Manager operation, even if they are not actual documented Resource Manager operations (Microsoft.<providerName>/<resourceType>/<subtype>/<Write/Read/Delete/Action>)    |
+
+### Resource Logs Schema - Optional (Part A)
+
+| Name | Required | Description |
+| --- | --- | --- |
+| **uri** | No | URI for the request if applicable. |
+| **operationVersion** | No | The api-version associated with the operation, if the operationName was performed using an API (for example, http://myservice.windowsazure.net/object?api-version=2016-06-01). If there is no API that corresponds to this operation, the version represents the version of that operation in case the properties associated with the operation change in the future.|
+| **operationDescription** | No | The static text description of this operation, for example "Get storage file." |
+| **resultType** | No | The status of the event. Typical values include Started, In Progress, Succeeded, Failed, Active, and Resolved. |
+| **resultSignature (statusCode)** | No | The sub status of the event. If this operation corresponds to a REST API call, this field is the HTTP status code of the corresponding REST call – for example: 400 Bad Request. |
+| **resultDescription** | No | The static text description of the result. For example: “One or more parameters missing”, “Storage quota exceeded”.|
+| **durationMs** | No | The duration of the operation in milliseconds.  |
+| **callerIpAddress** | No | The caller IP address, if the operation corresponds to an API call that would come from an entity with a publicly available IP address.   |
+| **correlationId** | No | A GUID used to group together a set of related events. Typically, if two events have the same operationName but two different statuses (for example "Started" and "Succeeded"), they share the same correlation ID. This may also represent other relationships between events. |
+| **identity** | No | A JSON blob that describes the identity of the user or application that performed the operation. Typically, this field includes the authorization and claims / JWT token from active directory.|
+| **Level** | No | The severity level of the event. Must be one of Informational, Warning, Error, or Critical.  |
+| **location** | No | The region of the resource emitting the event, for example "East US" or "France South".
+  |
+
+### Resource Logs Schema - Service Specific (Part B)
+
+| Name | Required | Description |
+| --- | --- | --- |
+| **properties** | No | Any extended properties related to this particular category of events. All custom/unique properties must be put inside this "Part B" of the schema.<br><br> "properties": {<br>"accountName": "testaccount1",<br> "requestUrl": "",<br> "requestHeader": "",<br> "etag": "",<br> "requestHeaderSize": 2658,<br>"requestBodySize": 0,<br>"responseHeaderSize": 295,<br>"responseBodySize": 2018<br> } |
+
+
+<!-- ------------**OPTION 1 EXAMPLE** --------------------- -->
 
 <!-- OPTION 1 - Minimum -  Link to relevant bookmarks in https://docs.microsoft.com/azure/azure-monitor/platform/resource-logs-categories, which is auto generated from the REST API.  Not all resource log types metrics are published depending on whether your product group wants them to be.  If the resource log is published, but category display names are wrong or missing, contact your PM and tell them to update them in the Azure Monitor "shoebox" manifest.  If this article is missing resource logs that you and the PM know are available, both of you contact azmondocs@microsoft.com.  
 -->
 
 <!-- Example format. There should be AT LEAST one Resource Provider/Resource Type here. -->
 
-This section lists all the resource log category types collected for [TODO-replace-with-service-name].  
+<!-- This section lists all the resource log category types collected for Azure Maps.  
 
 |Resource Log Type | Resource Provider / Type Namespace<br/> and link to individual metrics |
 |-------|-----|
 | Web Sites | [Microsoft.web/sites](/azure/azure-monitor/platform/resource-logs-categories#microsoftwebsites) |
-| Web Site Slots | [Microsoft.web/sites/slots](/azure/azure-monitor/platform/resource-logs-categories#microsoftwebsitesslots) 
+| Web Site Slots | [Microsoft.web/sites/slots](/azure/azure-monitor/platform/resource-logs-categories#microsoftwebsitesslots) -->
 
---------------**OPTION 2 EXAMPLE** -------------
+<!-- --------------**OPTION 2 EXAMPLE** ------------- -->
 
 <!--  OPTION 2 -  Link to the resource logs as above, but work in extra information not found in the automated metric-supported reference article.  NOTE: YOU WILL NOW HAVE TO MANUALLY MAINTAIN THIS SECTION to make sure it stays in sync with the resource-log-categories link. You can group these sections however you want provided you include the proper links back to resource-log-categories article. 
 -->
 
 <!-- Example format. Add extra information -->
 
-### Web Sites
+<!-- ### Web Sites
 
 Resource Provider and Type: [Microsoft.web/sites](/azure/azure-monitor/platform/resource-logs-categories#microsoftwebsites)
 
@@ -149,12 +198,12 @@ Resource Provider and Type: [Microsoft.web/sites/slots](/azure/azure-monitor/pla
 | AppServiceAuditLogs | Access Audit Logs            | *TODO other important information about this type* |
 |  etc.               |                              |                                                   |  
 
---------------**END Examples** -------------
+--------------**END Examples** ------------- -->
 
-## Azure Monitor Logs tables
+<!-- ## Azure Monitor Logs tables
 <!-- REQUIRED. Please keep heading in this order -->
 
-This section refers to all of the Azure Monitor Logs Kusto tables relevant to [TODO-replace-with-service-name] and available for query by Log Analytics. 
+<!-- This section refers to all of the Azure Monitor Logs Kusto tables relevant to Azure Maps and available for query by Log Analytics.
 
 ------------**OPTION 1 EXAMPLE** ---------------------
 
@@ -163,7 +212,7 @@ This section refers to all of the Azure Monitor Logs Kusto tables relevant to [T
 
 <!-- Example format. There should be AT LEAST one Resource Provider/Resource Type here. -->
 
-|Resource Type | Notes |
+<!--|Resource Type | Notes |
 |-------|-----|
 | [Virtual Machines](/azure/azure-monitor/reference/tables/tables-resourcetype#virtual-machines) | |
 | [Virtual machine scale sets](/azure/azure-monitor/reference/tables/tables-resourcetype#virtual-machine-scale-sets) | |
@@ -175,25 +224,25 @@ This section refers to all of the Azure Monitor Logs Kusto tables relevant to [T
 NOTE: YOU WILL NOW HAVE TO MANUALLY MAINTAIN THIS SECTION to make sure it stays in sync with the automatically generated list. You can group these sections however you want provided you include the proper links back to the proper tables. 
 -->
 
-### Virtual Machines
+<!-- ### Virtual Machines
 
 | Table |  Description | *TODO replace this label with proper title for your additional information*  |
 |:---------|:-------------|------------------|
-| [AzureActivity](/azure/azure-monitor/reference/tables/azureactivity)   | <!-- description copied from previous link --> Entries from the Azure Activity log that provides insight into any subscription-level or management group level events that have occurred in Azure. | *TODO other important information about this type |
-| [AzureMetrics](/azure/azure-monitor/reference/tables/azuremetrics) | <!-- description copied from previous link --> Metric data emitted by Azure services that measure their health and performance.    | *TODO other important information about this type |
+| [AzureActivity](/azure/azure-monitor/reference/tables/azureactivity)   | <!-- description copied from previous link --Entries from the Azure Activity log that provides insight into any subscription-level or management group level events that have occurred in Azure. | *TODO other important information about this type |
+| [AzureMetrics](/azure/azure-monitor/reference/tables/azuremetrics) | <!-- description copied from previous link Metric data emitted by Azure services that measure their health and performance.    | *TODO other important information about this type |
 |  etc.               |                              |                                                   |  
 
 ### Virtual Machine Scale Sets
 
 | Table |  Description | *TODO replace this label with other information*  |
 |:---------|:-------------|------------------|
-| [ADAssessmentRecommendation](/azure/azure-monitor/reference/tables/adassessmentrecommendation)   | <!-- description copied from previous link --> Recommendations generated by AD assessments that are started through a scheduled task. When you schedule the assessment it runs by default every 7 days and upload the data into Azure Log Analytics | *TODO other important information about this type |
-| [ADReplicationResult](/azure/azure-monitor/reference/tables/adreplicationresult) | <!-- description copied from previous link --> The AD Replication Status solution regularly monitors your Active Directory environment for any replication failures.    | *TODO other important information about this type |
+| [ADAssessmentRecommendation](/azure/azure-monitor/reference/tables/adassessmentrecommendation)   | <!-- description copied from previous link  Recommendations generated by AD assessments that are started through a scheduled task. When you schedule the assessment it runs by default every 7 days and upload the data into Azure Log Analytics | *TODO other important information about this type |
+| [ADReplicationResult](/azure/azure-monitor/reference/tables/adreplicationresult) | <!-- description copied from previous link -The AD Replication Status solution regularly monitors your Active Directory environment for any replication failures.    | *TODO other important information about this type |
 |  etc.               |                              |                                                   |  
 
 <!-- Add extra information if required -->
 
-For a reference of all Azure Monitor Logs / Log Analytics tables, see the [Azure Monitor Log Table Reference](/azure/azure-monitor/reference/tables/tables-resourcetype).
+<!-- For a reference of all Azure Monitor Logs / Log Analytics tables, see the [Azure Monitor Log Table Reference](/azure/azure-monitor/reference/tables/tables-resourcetype).
 
 --------------**END EXAMPLES** -------------
 
@@ -201,7 +250,7 @@ For a reference of all Azure Monitor Logs / Log Analytics tables, see the [Azure
 <!-- REQUIRED. Please keep heading in this order -->
 <!-- If your service uses the AzureDiagnostics table in Azure Monitor Logs / Log Analytics, list what fields you use and what they are for. Azure Diagnostics is over 500 columns wide with all services using the fields that are consistent across Azure Monitor and then adding extra ones just for themselves.  If it uses service specific diagnostic table, refers to that table. If it uses both, put both types of information in. Most services in the future will have their own specific table. If you have questions, contact azmondocs@microsoft.com -->
 
-[TODO-replace-with-service-name] uses the [Azure Diagnostics](/azure/azure-monitor/reference/tables/azurediagnostics) table and the [TODO whatever additional] table to store resource log information. The following columns are relevant.
+<!-- Azure Maps uses the [Azure Diagnostics](/azure/azure-monitor/reference/tables/azurediagnostics) table and the [TODO whatever additional] table to store resource log information. The following columns are relevant.
 
 **Azure Diagnostics**
 
@@ -215,32 +264,131 @@ For a reference of all Azure Monitor Logs / Log Analytics tables, see the [Azure
 | Property | Description |
 |:--- |:---|
 |  |  |
-|  |  |
+|  |  | -->
 
-## Activity log
+## Activity logs schema
 <!-- REQUIRED. Please keep heading in this order -->
 
-The following table lists the operations related to [TODO-replace-with-service-name] that may be created in the Activity log.
+IFxAudit
++ AuditMandatoryProperties
++ AuditOptionalProperties
+
+The following table lists the operations related to Azure Maps that may be created in the Activity log.
 
 <!-- Fill in the table with the operations that can be created in the Activity log for the service. -->
-| Operation | Description |
-|:---|:---|
-| | |
-| | |
+| Name | Required | Description |
+| --- | --- | --- |
+| **operationName** | Yes | The name of the operation represented by this event. If the event represents an Azure RBAC operation, this is the Azure RBAC operation name (for example, Microsoft.Storage/storageAccounts/blobServices/blobs/Read). Typically modeled in the form of a Resource Manager operation, even if they are not actual documented Resource Manager operations (Microsoft.<providerName>/<resourceType>/<subtype>/<Write/Read/Delete/Action>)  |
+| **resultType** | Yes | {<br> Success = 1,<br> ClientError = 2,<br> Failure = 3,<br> Timeout = 4<br> }   |
+| **category** | Yes | {<br> Other = 0,<br> UserManagement = 1,<br> GroupManagement = 2,<br> Authentication = 3,<br> Authorization = 4,<br> RoleManagement = 5,<br> ApplicationManagement = 6,<br> KeyManagement = 7,<br> DirectoryManagement = 8,<br> ResourceManagement = 9,<br> PolicyManagement = 10,<br> DeviceManagement = 11,<br> EntitlementManagement = 12,<br> PasswordManagement = 13,<br> IdentityProtection = 14,<br> ObjectManagement = 15,<br> ProvisioningManagement = 16<br> }   |
+| **targetResource** | Yes | Subscription Id<br> Resource Group Name<br> Maps Account<br> Private Atlas<br> Event Grid Filter<br>  |
+| **callerIdentity** | Yes | {<br> UPN = 1,<br> PUID = 2,<br> ObjectID = 3,<br> Certificate = 4,<br> Claim = 5,<br> Username = 6,<br> KeyName = 7,<br> SubscriptionID = 8,<br> ApplicationID = 9<br> } | 
+| **callerIpAddress** | No | The caller IP address, if the operation corresponds to an API call that would come from an entity with a publicly available IP address. |
+| **requestId** | No | A GUID used to group together a set of related events. Typically, if two events have the same operationName but two different statuses (for example "Started" and "Succeeded"), they share the same correlation ID. This may also represent other relationships between events. |
+| **resultDescription** | No | The static text description of the result. For example: "One or more parameters missing", "Storage quota exceeded". |
 
 <!-- NOTE: This information may be hard to find or not listed anywhere.  Please ask your PM for at least an incomplete list of what type of messages could be written here. If you can't locate this, contact azmondocs@microsoft.com for help -->
 
+Shoebox
+| Activity Log field name | Shoebox field name (ETW event field name) | Details |
+| --- | --- | --- |
+| **Category** | Category | <ul><li>Administrative<li>Security<li>ServiceHealth<li>Alert<li>Recommendation<li>Policy<li>Autoscale<li>ResourceHealth</ul> |
+| **EventDataId** | | Type: string (A GUID converted to string) <br> This value is assigned the following: Guid.NewGuid().ToString()  |
+| **EventTime** | Time | Type: string (a DataTimeOffset converted to XML) <br> If missing in the ETW event DataTimeOffset.MinValue will be used.  |
+| **Channels** | N/A | Type: string <br>The fixed value “Operation” is used.  |
+| **HttpRequest** | callerIpAddress | Type: string (An HttpRequestInfo initialized as follows:<br>{<br>“clientIpAddress” : callerIpAddress<br>}<br>And converted to json.<br>If missing in the ETW (callerIpAddress) a null value will be used. | 
+| **Level** | Level | Type: string <br>If missing in the ETW event the fixed value “Informational” will be used. |
+| **subscriptionId** | N/A | Type: string <br> subscriptionId from resourceId  |
+| **resourceId** | resourceId | Type: string  |
+| **resourceGroupName** | N/A | Type: string <br>resourceGroupName from resourceId or default to empty.  |
+| **resourceProviderName** | N/A | Type: string <br>resourceProviderName from resourceId or default to empty. | 
+| **correlationId** | correlationId | Type: string  |
+| **eventName** | N/A | Null string  |
+| **operationId** | N/A | Null string  |
+| **operationName** | operationName | Type: string  |
+| **Status** | resultType | <ul><li>Started<li>Succeeded<li>Failed<li>Accepted<li>Activated<li>Resolved<li>Active<li>Updated<li>In Progress<li>Pending</ul> |
+| **Substatus** | resultSignature | Type: string<br>resultSignature is of the format: Status.SubStatus.<br>If resultSignature is missing in the ETW or if it is empty/null, a null string will be used here.| 
+| **TenantId** | N/A | Null string  |
+| **Description** | resultDescription | Type: string | 
+| **resourceType** | N/A | Type: string <br>Resource type from resourceId or default to empty |
+| **Properties** | Properties | Type: Dictionary<string, string> <br>In the ETW the value of Properties is either empty or a valid json document that is a serialized Dictionary<string, string> <br>If it is empty in the ETW, then properties will be an empty dictionary.  |
+| **Caller** | Identity | Type: string <br>Identity is a JToken originally.<br>Identity is of the format:<br>{<br>“authorization” : {…}, <br>“claims” : {…}<br>}<br>The value for claims will be converted to string and used in this case. This value will be converted to a Dictionary and the first key found in it will be used as caller.<br>If the claims value is null (or Identity is empty/null) then a null value will be used.<br>Use one of the below keys (as appropriate) to specify the caller in the claims:<br>http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress <br>http://schemas.xmlsoap.org/ws/2005/05/identity/claims/upn <br>http://schemas.xmlsoap.org/ws/2005/05/identity/claims/spn <br>http://schemas.microsoft.com/identity/claims/objectidentifier |
+| **Authorization** | Identity | Type: string <br>Identity is a JToken originally.<br>Identity is of the format:<br>{<br>“authorization” : {…}, <br>“claims” : {…}<br>}<br>The value for authorization will be converted to string and used in this case.<br>If not present in the ETW, null will be used here. |
+| **Claims** | Identity | Type: string<br>Identity is a JToken originally.<br>Identity is of the format:<br>{<br>“authorization” : {…}, <br>“claims” : {…}<br>}<br>The value for claims will be converted to string and used in this case.<br>If not present in the ETW, null will be used here. 
+
 For more information on the schema of Activity Log entries, see [Activity  Log schema](/azure/azure-monitor/essentials/activity-log-schema). 
 
-## Schemas
+<!--## Schemas
 <!-- REQUIRED. Please keep heading in this order -->
 
-The following schemas are in use by [TODO-replace-with-service-name]
+<!--The following schemas are in use by Azure Maps
 
 <!-- List the schema and their usage. This can be for resource logs, alerts, event hub formats, etc depending on what you think is important. -->
+
+## Audit Actions
+Resource Provider
+| Operation Name | Audit | Log Type |
+| --- | --- | --- |
+| Microsoft.Maps/accounts/read | No | Activity Log |
+| Microsoft.Maps/accounts/write |Yes | Activity Log  |
+| Microsoft.Maps/accounts/delete | Yes | Activity Log |
+| Microsoft.Maps/accounts/moveResource | No | Activity Log |
+| Microsoft.Maps/accounts/listKeys/action |Yes | Activity Log  |
+| Microsoft.Maps/accounts/regenerateKeys/action | Yes | Activity Log  |
+| Microsoft.Maps/accounts/eventGridFilters/read | No | Activity Log |
+| Microsoft.Maps/accounts/eventGridFilters/write |Yes | Activity Log  |
+| Microsoft.Maps/accounts/eventGridFilters/delete | Yes | Activity Log  |
+| Microsoft.Maps/accounts/privateAtlases/read | No | Activity Log |
+| Microsoft.Maps/accounts/privateAtlases/patch |Yes | Activity Log  |
+| Microsoft.Maps/accounts/privateAtlases/put | Yes | Activity Log  |
+| Microsoft.Maps/accounts/privateAtlases/delete | Yes | Activity Log  |
+| Microsoft.Maps/accounts/creators/read | No | Activity Log |
+| Microsoft.Maps/accounts/creators/write |Yes | Activity Log  |
+| Microsoft.Maps/accounts/creators/delete | Yes | Activity Log  |
+| Microsoft.Maps/accounts/creators/lock | Yes | Activity Log |
+| Microsoft.Maps/accounts/creators/unlock |Yes | Activity Log  |
+| Microsoft.Maps/accounts/creators/create | Yes | Activity Log  |
+| Microsoft.Maps/accounts/creators/updateallowedcapacity |No | Activity Log  |
+| Microsoft.Maps/accounts/creators/updateconsumption | No | Activity Log |
+| Microsoft.Maps/subscription/update | Yes | Activity Log |
+
+MDP/Creator
+| Operation Name | Audit | Log Type |
+| --- | --- | --- |
+| Storage Service Upload Data | No | Resource Log |
+| Storage Service Update Data | No | Resource Log |
+| Storage Service Delete Data | No | Resource Log |
+| Storage Service Download/Read Data | No | Resource Log |
+| Storage Service List User Data | No | Resource Log |
+| Conversion Service Convert Data (Accesses user data) | No | Resource Log |
+| Conversion Service Delete Data | No | Resource Log |
+| Conversion Service List Data | No | Resource Log |
+| Dataset Service Create New Dataset (From Converted User Data) | No | Resource Log |
+| Storage Service Download/Read Data | No | Resource Log |
+| Storage Service List User Data | No | Resource Log |
+| Dataset Service Delete Dataset | No | Resource Log |
+| Dataset Service Import Dataset | No | Resource Log |
+| Geofencing service Get Geofence (Accesses User Data in Storage Service) | No | Resource Log |
+| Spatial Service Bounding Box (Accesses User Data in Storage Service) | No | Resource Log |
+| Spatial Service Buffer (Accesses User Data in Storage Service) | No | Resource Log |
+| Spatial Service Bounding Box (Accesses User Data in Storage Service) | No | Resource Log |
+| Spatial Service Closest Point (Accesses User Data in Storage Service) | No | Resource Log |
+| WFS Service Read Dataset | No | Resource Log |
+| WFS Service Update Dataset Features | No | Resource Log |
+| WFS Service Delete Dataset Features | No | Resource Log |
+| WFS Service Create Dataset Features | No | Resource Log |
+| Tileset Service Read Dataset | No | Resource Log |
+| Tileset Service Delete Tilesets | No | Resource Log |
+| Dataset Service Import Dataset | No | Resource Log |
+
+Proxy
+No touchpoints directly with “Customer” data in Proxy API’s so specific audit actions here unless we want to audit and record all API calls from customers.
+
+Geneva Actions
+Geneva actions generates specific audit logs but as far as customers are concerned the actions hit the service endpoints just like customer generated requests so their auditing should be covered as part of auditing the service actions itself. 
 
 ## See Also
 
 <!-- replace below with the proper link to your main monitoring service article -->
-- See [Monitoring Azure [TODO-replace-with-service-name]](monitor-service-name.md) for a description of monitoring Azure [TODO-replace-with-service-name].
+- See [Monitoring Azure Azure Maps](monitor-service-name.md) for a description of monitoring Azure Azure Maps.
 - See [Monitoring Azure resources with Azure Monitor](/azure/azure-monitor/insights/monitor-azure-resources) for details on monitoring Azure resources.
