@@ -64,23 +64,23 @@ This section lists all the automatically collected platform metrics collected fo
 |---|---|---|---| ---| ---| ---|
 | Usage (Usage) | Count | Count of API calls | ApiName, ApiCategory, ResultType, ResponseCode| All | N/A | Used to monitor availability per API |
 
-### Storage Consumption Metrics
+<!-- ### Storage Consumption Metrics
 
 |Metric (Metric Display Name)|Unit (Aggregation Type) |Description|Dimensions| Time granularities| Legacy metric mapping | Usage |
 |---|---|---|---| ---| ---| ---|
-| MBytesConsumed (MBytesConsumed) | MB (Total) | Storage consumption for Creator services | ResourceId, CreatorResourceName, CreatorServiceName| All | N/A | Used to monitor the storage consumption per Creator Service API |
+| MBytesConsumed (MBytesConsumed) | MB (Total) | Storage consumption for Creator services | ResourceId, CreatorResourceName, CreatorServiceName| All | N/A | Used to monitor the storage consumption per Creator Service API |-->
 
-### Transaction metrics
-
-|Metric (Metric Display Name)|Unit (Aggregation Type) |Description|Dimensions| Time granularities| Legacy metric mapping | Usage |
-|---|---|---|---| ---| ---| ---|
-| Transactions (Transactions) | Count | Count of total transactions calls | ApiName, ApiCategory, ResultType, ResponseCode| All | N/A | Used to monitor the total number of requests per API |
-
-### Failure metrics
+<!-- ### Transaction metrics
 
 |Metric (Metric Display Name)|Unit (Aggregation Type) |Description|Dimensions| Time granularities| Legacy metric mapping | Usage |
 |---|---|---|---| ---| ---| ---|
-| FailedRequests (Failed Requests) | Count | Count of failed API calls | ApiName, ApiCategory, ResponseCode| All | N/A | Used to monitor the failures per API |
+| Transactions (Transactions) | Count | Count of total transactions calls | ApiName, ApiCategory, ResultType, ResponseCode| All | N/A | Used to monitor the total number of requests per API |-->
+
+<!-- ### Failure metrics
+
+|Metric (Metric Display Name)|Unit (Aggregation Type) |Description|Dimensions| Time granularities| Legacy metric mapping | Usage |
+|---|---|---|---| ---| ---| ---|
+| FailedRequests (Failed Requests) | Count | Count of failed API calls | ApiName, ApiCategory, ResponseCode| All | N/A | Used to monitor the failures per API | -->
 
 <!-- Add additional explanation of reference information as needed here. Link to other articles such as your Monitor Azure Maps article as appropriate. -->
 
@@ -123,7 +123,6 @@ This section lists the types of resource logs you can collect for Azure Maps.
 
 For reference, see a list of [all resource logs category types supported in Azure Monitor](/azure/azure-monitor/platform/resource-logs-schema).
 
-### Resource Logs Schema - Required (Part A)
 
 | Name | Required | Description |
 | --- | --- | --- |
@@ -131,11 +130,6 @@ For reference, see a list of [all resource logs category types supported in Azur
 | **resourceId** | Yes | The resource ID of the resource that emitted the event. For tenant services, this is of the form /tenants/tenant-id/providers/provider-name.|
 | **category** | Yes | The log category of the event. Category is the granularity at which you can enable or disable logs on a particular resource. The properties that appear within the properties blob of an event are the same within a particular log category and resource type. Typical log categories are "Audit" "Operational" "Execution" and "Request."  |
 | **operationName** | Yes | The name of the operation represented by this event. If the event represents an Azure RBAC operation, this is the Azure RBAC operation name (for example, Microsoft.Storage/storageAccounts/blobServices/blobs/Read). Typically modeled in the form of a Resource Manager operation, even if they are not actual documented Resource Manager operations (Microsoft.<providerName>/<resourceType>/<subtype>/<Write/Read/Delete/Action>)    |
-
-### Resource Logs Schema - Optional (Part A)
-
-| Name | Required | Description |
-| --- | --- | --- |
 | **uri** | No | URI for the request if applicable. |
 | **operationVersion** | No | The api-version associated with the operation, if the operationName was performed using an API (for example, http://myservice.windowsazure.net/object?api-version=2016-06-01). If there is no API that corresponds to this operation, the version represents the version of that operation in case the properties associated with the operation change in the future.|
 | **operationDescription** | No | The static text description of this operation, for example "Get storage file." |
@@ -148,13 +142,7 @@ For reference, see a list of [all resource logs category types supported in Azur
 | **identity** | No | A JSON blob that describes the identity of the user or application that performed the operation. Typically, this field includes the authorization and claims / JWT token from active directory.|
 | **Level** | No | The severity level of the event. Must be one of Informational, Warning, Error, or Critical.  |
 | **location** | No | The region of the resource emitting the event, for example "East US" or "France South".
-  |
-
-### Resource Logs Schema - Service Specific (Part B)
-
-| Name | Required | Description |
-| --- | --- | --- |
-| **properties** | No | Any extended properties related to this particular category of events. All custom/unique properties must be put inside this "Part B" of the schema.<br><br> "properties": {<br>"accountName": "testaccount1",<br> "requestUrl": "",<br> "requestHeader": "",<br> "etag": "",<br> "requestHeaderSize": 2658,<br>"requestBodySize": 0,<br>"responseHeaderSize": 295,<br>"responseBodySize": 2018<br> } |
+| **properties** | No | <br> "properties": {<br>"accountName": "testaccount1",<br> "requestUrl": "",<br> "requestHeader": "",<br> "etag": "",<br> "requestHeaderSize": 2658,<br>"requestBodySize": 0,<br>"responseHeaderSize": 295,<br>"responseBodySize": 2018<br> } |
 
 
 <!-- ------------**OPTION 1 EXAMPLE** --------------------- -->
@@ -266,12 +254,9 @@ NOTE: YOU WILL NOW HAVE TO MANUALLY MAINTAIN THIS SECTION to make sure it stays 
 |  |  |
 |  |  | -->
 
-## Activity logs schema
+## Activity logs
 <!-- REQUIRED. Please keep heading in this order -->
 
-IFxAudit
-+ AuditMandatoryProperties
-+ AuditOptionalProperties
 
 The following table lists the operations related to Azure Maps that may be created in the Activity log.
 
@@ -289,32 +274,7 @@ The following table lists the operations related to Azure Maps that may be creat
 
 <!-- NOTE: This information may be hard to find or not listed anywhere.  Please ask your PM for at least an incomplete list of what type of messages could be written here. If you can't locate this, contact azmondocs@microsoft.com for help -->
 
-Shoebox
-| Activity Log field name | Shoebox field name (ETW event field name) | Details |
-| --- | --- | --- |
-| **Category** | Category | <ul><li>Administrative<li>Security<li>ServiceHealth<li>Alert<li>Recommendation<li>Policy<li>Autoscale<li>ResourceHealth</ul> |
-| **EventDataId** | | Type: string (A GUID converted to string) <br> This value is assigned the following: Guid.NewGuid().ToString()  |
-| **EventTime** | Time | Type: string (a DataTimeOffset converted to XML) <br> If missing in the ETW event DataTimeOffset.MinValue will be used.  |
-| **Channels** | N/A | Type: string <br>The fixed value “Operation” is used.  |
-| **HttpRequest** | callerIpAddress | Type: string (An HttpRequestInfo initialized as follows:<br>{<br>“clientIpAddress” : callerIpAddress<br>}<br>And converted to json.<br>If missing in the ETW (callerIpAddress) a null value will be used. | 
-| **Level** | Level | Type: string <br>If missing in the ETW event the fixed value “Informational” will be used. |
-| **subscriptionId** | N/A | Type: string <br> subscriptionId from resourceId  |
-| **resourceId** | resourceId | Type: string  |
-| **resourceGroupName** | N/A | Type: string <br>resourceGroupName from resourceId or default to empty.  |
-| **resourceProviderName** | N/A | Type: string <br>resourceProviderName from resourceId or default to empty. | 
-| **correlationId** | correlationId | Type: string  |
-| **eventName** | N/A | Null string  |
-| **operationId** | N/A | Null string  |
-| **operationName** | operationName | Type: string  |
-| **Status** | resultType | <ul><li>Started<li>Succeeded<li>Failed<li>Accepted<li>Activated<li>Resolved<li>Active<li>Updated<li>In Progress<li>Pending</ul> |
-| **Substatus** | resultSignature | Type: string<br>resultSignature is of the format: Status.SubStatus.<br>If resultSignature is missing in the ETW or if it is empty/null, a null string will be used here.| 
-| **TenantId** | N/A | Null string  |
-| **Description** | resultDescription | Type: string | 
-| **resourceType** | N/A | Type: string <br>Resource type from resourceId or default to empty |
-| **Properties** | Properties | Type: Dictionary<string, string> <br>In the ETW the value of Properties is either empty or a valid json document that is a serialized Dictionary<string, string> <br>If it is empty in the ETW, then properties will be an empty dictionary.  |
-| **Caller** | Identity | Type: string <br>Identity is a JToken originally.<br>Identity is of the format:<br>{<br>“authorization” : {…}, <br>“claims” : {…}<br>}<br>The value for claims will be converted to string and used in this case. This value will be converted to a Dictionary and the first key found in it will be used as caller.<br>If the claims value is null (or Identity is empty/null) then a null value will be used.<br>Use one of the below keys (as appropriate) to specify the caller in the claims:<br>http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress <br>http://schemas.xmlsoap.org/ws/2005/05/identity/claims/upn <br>http://schemas.xmlsoap.org/ws/2005/05/identity/claims/spn <br>http://schemas.microsoft.com/identity/claims/objectidentifier |
-| **Authorization** | Identity | Type: string <br>Identity is a JToken originally.<br>Identity is of the format:<br>{<br>“authorization” : {…}, <br>“claims” : {…}<br>}<br>The value for authorization will be converted to string and used in this case.<br>If not present in the ETW, null will be used here. |
-| **Claims** | Identity | Type: string<br>Identity is a JToken originally.<br>Identity is of the format:<br>{<br>“authorization” : {…}, <br>“claims” : {…}<br>}<br>The value for claims will be converted to string and used in this case.<br>If not present in the ETW, null will be used here. 
+
 
 For more information on the schema of Activity Log entries, see [Activity  Log schema](/azure/azure-monitor/essentials/activity-log-schema). 
 
@@ -325,70 +285,10 @@ For more information on the schema of Activity Log entries, see [Activity  Log s
 
 <!-- List the schema and their usage. This can be for resource logs, alerts, event hub formats, etc depending on what you think is important. -->
 
-## Audit Actions
-Resource Provider
-| Operation Name | Audit | Log Type |
-| --- | --- | --- |
-| Microsoft.Maps/accounts/read | No | Activity Log |
-| Microsoft.Maps/accounts/write |Yes | Activity Log  |
-| Microsoft.Maps/accounts/delete | Yes | Activity Log |
-| Microsoft.Maps/accounts/moveResource | No | Activity Log |
-| Microsoft.Maps/accounts/listKeys/action |Yes | Activity Log  |
-| Microsoft.Maps/accounts/regenerateKeys/action | Yes | Activity Log  |
-| Microsoft.Maps/accounts/eventGridFilters/read | No | Activity Log |
-| Microsoft.Maps/accounts/eventGridFilters/write |Yes | Activity Log  |
-| Microsoft.Maps/accounts/eventGridFilters/delete | Yes | Activity Log  |
-| Microsoft.Maps/accounts/privateAtlases/read | No | Activity Log |
-| Microsoft.Maps/accounts/privateAtlases/patch |Yes | Activity Log  |
-| Microsoft.Maps/accounts/privateAtlases/put | Yes | Activity Log  |
-| Microsoft.Maps/accounts/privateAtlases/delete | Yes | Activity Log  |
-| Microsoft.Maps/accounts/creators/read | No | Activity Log |
-| Microsoft.Maps/accounts/creators/write |Yes | Activity Log  |
-| Microsoft.Maps/accounts/creators/delete | Yes | Activity Log  |
-| Microsoft.Maps/accounts/creators/lock | Yes | Activity Log |
-| Microsoft.Maps/accounts/creators/unlock |Yes | Activity Log  |
-| Microsoft.Maps/accounts/creators/create | Yes | Activity Log  |
-| Microsoft.Maps/accounts/creators/updateallowedcapacity |No | Activity Log  |
-| Microsoft.Maps/accounts/creators/updateconsumption | No | Activity Log |
-| Microsoft.Maps/subscription/update | Yes | Activity Log |
-
-MDP/Creator
-| Operation Name | Audit | Log Type |
-| --- | --- | --- |
-| Storage Service Upload Data | No | Resource Log |
-| Storage Service Update Data | No | Resource Log |
-| Storage Service Delete Data | No | Resource Log |
-| Storage Service Download/Read Data | No | Resource Log |
-| Storage Service List User Data | No | Resource Log |
-| Conversion Service Convert Data (Accesses user data) | No | Resource Log |
-| Conversion Service Delete Data | No | Resource Log |
-| Conversion Service List Data | No | Resource Log |
-| Dataset Service Create New Dataset (From Converted User Data) | No | Resource Log |
-| Storage Service Download/Read Data | No | Resource Log |
-| Storage Service List User Data | No | Resource Log |
-| Dataset Service Delete Dataset | No | Resource Log |
-| Dataset Service Import Dataset | No | Resource Log |
-| Geofencing service Get Geofence (Accesses User Data in Storage Service) | No | Resource Log |
-| Spatial Service Bounding Box (Accesses User Data in Storage Service) | No | Resource Log |
-| Spatial Service Buffer (Accesses User Data in Storage Service) | No | Resource Log |
-| Spatial Service Bounding Box (Accesses User Data in Storage Service) | No | Resource Log |
-| Spatial Service Closest Point (Accesses User Data in Storage Service) | No | Resource Log |
-| WFS Service Read Dataset | No | Resource Log |
-| WFS Service Update Dataset Features | No | Resource Log |
-| WFS Service Delete Dataset Features | No | Resource Log |
-| WFS Service Create Dataset Features | No | Resource Log |
-| Tileset Service Read Dataset | No | Resource Log |
-| Tileset Service Delete Tilesets | No | Resource Log |
-| Dataset Service Import Dataset | No | Resource Log |
-
-Proxy
-No touchpoints directly with “Customer” data in Proxy API’s so specific audit actions here unless we want to audit and record all API calls from customers.
-
-Geneva Actions
-Geneva actions generates specific audit logs but as far as customers are concerned the actions hit the service endpoints just like customer generated requests so their auditing should be covered as part of auditing the service actions itself. 
+ 
 
 ## See Also
 
 <!-- replace below with the proper link to your main monitoring service article -->
-- See [Monitoring Azure Azure Maps](monitor-service-name.md) for a description of monitoring Azure Azure Maps.
-- See [Monitoring Azure resources with Azure Monitor](/azure/azure-monitor/insights/monitor-azure-resources) for details on monitoring Azure resources.
+- See [Monitoring Azure Maps](/monitor-azure-maps.md) for a description of monitoring Azure Azure Maps.
+- See [Monitoring Azure resources with Azure Monitor](/azure/azure-monitor/essentials/monitor-azure-resources) for details on monitoring Azure resources.
