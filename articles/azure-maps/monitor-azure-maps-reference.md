@@ -62,7 +62,7 @@ This section lists all the automatically collected platform metrics collected fo
 
 |Metric (Metric Display Name)|Unit (Aggregation Type) |Description|Dimensions| Time granularities| Legacy metric mapping | Usage |
 |---|---|---|---| ---| ---| ---|
-| Usage (Usage) | Count | Count of API calls | ApiName, ApiCategory, ResultType, ResponseCode| All | N/A | Used to monitor availability per API |
+| Usage (Usage) | Count | Count of API calls | ApiName, ApiCategory, ResultType, ResponseCode| All | N/A | Used to monitor the total number of requests per API |
 
 <!-- ### Storage Consumption Metrics
 
@@ -290,5 +290,5 @@ For more information on the schema of Activity Log entries, see [Activity  Log s
 ## See Also
 
 <!-- replace below with the proper link to your main monitoring service article -->
-- See [Monitoring Azure Maps](/monitor-azure-maps.md) for a description of monitoring Azure Azure Maps.
-- See [Monitoring Azure resources with Azure Monitor](/azure/azure-monitor/essentials/monitor-azure-resources) for details on monitoring Azure resources.
+- See [Monitoring Azure Maps](/monitor-azure-maps.md) for a description of monitoring Azure Maps.
+- See [Monitoring Azure resources with Azure Monitor](../azure-monitor/essentials/monitor-azure-resources.md) for details on monitoring Azure resources.
