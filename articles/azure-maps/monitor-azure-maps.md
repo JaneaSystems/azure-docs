@@ -118,17 +118,23 @@ For reference, you can see a list of [all resource metrics supported in Azure Mo
 For reference, you can see a list of [all resource metrics supported in Azure Monitor](/azure/azure-monitor/platform/metrics-supported).-->
 
 
-### View operation level metrics for Azure Cosmos DB
+### View operation level metrics for Azure Maps
 
 1. Sign in to the [Azure portal](https://portal.azure.com/).
 
 2. Select **Monitor** from the left-hand navigation bar, and select **Metrics**.
 
-3. From the **Metrics** pane > **Select a resource** > choose the required **subscription**, and **resource group**. For the **Resource type**, select **Azure Maps accounts**, choose one of your existing Azure Maps accounts, and select **Apply**.
+   :::image type="content" source="./media/monitor-azure-maps/monitor-metrics-blade.png" alt-text="Metrics pane in Azure Monitor":::
 
-4. Next you can select a metric from the list of available metrics. You can select metrics specific to request units, storage, latency, availability, Creator, and others. To learn in detail about all the available metrics in this list, see the [Metrics by category](monitor-azure-maps-reference.md) article. In this example, let's select **Request units** and **Avg** as the aggregation value.
+3. From the **Metrics** pane > **Select a scope** > choose the required **subscription**, and **resource group**. For the **Resource type**, select **Azure Maps accounts**, choose one of your existing Azure Maps accounts, and select **Apply**.
 
-In addition to these details, you can also select the **Time range** and **Time granularity** of the metrics. At max, you can view metrics for the past 30 days.  After you apply the filter, a chart is displayed based on your filter. You can see the average number of request units consumed per minute for the selected period.
+   :::image type="content" source="./media/monitor-azure-maps/select-maps-account.png" alt-text="Choose an Azure Maps account to view metrics":::
+
+4. Next you can select a metric from the list of available metrics. You can select metrics specific to availability and usage. To learn in detail about all the available metrics in this list, see the [Metrics by category](monitor-azure-maps-reference.md) article. In this example, let's select **Usage** and **Count** as the aggregation value.
+
+In addition to these details, you can also select the **Time range** and **Time granularity** of the metrics. At max, you can view metrics for the past 30 days.  After you apply the filter, a chart is displayed based on your filter. You can see the number of usage units consumed per hour for the selected period.
+
+   :::image type="content" source="./media/monitor-azure-maps/metric-types.png" alt-text="Choose a metric from the Azure portal":::
 
 <!--  Optional: Call out additional information to help your customers. For example, you can include additional information here about how to use metrics explorer specifically for your service. Remember that the UI is subject to change quite often so you will need to maintain these screenshots yourself if you add them in. -->
 
